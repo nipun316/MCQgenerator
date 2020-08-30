@@ -12,14 +12,27 @@ nextButton.addEventListener('click', () => {
   setNextQuestion()
 })
 
+
 function startGame() {
   startButton.classList.add('hide')
   shuffledQuestions = questions.sort(() => Math.random() - .5)
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
   setNextQuestion()
+  store();
+  
 
 }
+names=[];
+  function store()
+    {
+    
+    peru=prompt("enter player name");
+    names.push(peru);
+    localStorage.setItem("names",JSON.stringify(names));
+    return false;
+
+  }
 
 function setNextQuestion() {
   resetState()
