@@ -5,6 +5,21 @@ const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 
 let shuffledQuestions, currentQuestionIndex
+let score=0;
+
+
+var c=100
+  function myCounter() {
+   document.getElementById("text").innerHTML= c--;
+   if(c==0){
+    savescore();
+    redirect();
+   }
+}
+function redirect(){
+  location.replace("players.html")
+}
+
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -19,7 +34,9 @@ function startGame() {
   currentQuestionIndex = 0
   questionContainerElement.classList.remove('hide')
   setNextQuestion()
+
   store();
+  setInterval(myCounter,1000);
   
 
 }
@@ -34,11 +51,29 @@ names=[];
 
   }
 
+points=[],date=[],time=[];
+  function savescore()
+    {
+    time.push(100-c);
+    a= new Date();
+    date.push(a);
+    points.push(score);
+    localStorage.setItem("points",JSON.stringify(points));
+    localStorage.setItem("date",JSON.stringify(date));
+    localStorage.setItem("time",JSON.stringify(time));
+
+    score=0;
+    c=0;
+    return false;
+
+  }
+
+
 function setNextQuestion() {
   resetState()
   showQuestion(shuffledQuestions[currentQuestionIndex])
 }
-let score=0;
+
 
 function showQuestion(question) {
   questionElement.innerText = question.question
@@ -86,7 +121,9 @@ function selectAnswer(e) {
     startButton.innerText = 'Restart'
     startButton.classList.remove('hide')
     alert("CONGRATULATIONS !! YOUR SCORE IS "+score)
-    score=0;
+    
+    savescore();
+    redirect();
   }
 }
 

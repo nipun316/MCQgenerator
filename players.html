@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>playersname</title>
+	<meta charset="utf-8">
+	
+</head>
+<style type="text/css">
+	body{
+		background: black;
+		color:red;
+	}
+	ul,li{
+		display: inline-block;
+		padding: 20px;
+		color: white
+	}
+</style>
+<body>
+<h1> TOP PLAYERS</h1>
+<ul>
+	<li style="padding-left: 0px;"><h1>NAME</h1></li>
+	<li><h1>SCORE</h1></li>
+	<li><h1>TIME</h1></li>
+	<li><h1>DATE</h1></li>
+</ul>
+<p style="padding-left: 80px;">
+	<h1>
+
+<span style="padding:30px;" id="result"></span>
+<span style="padding:30px;" id="score"></span>
+<span style="padding:30px;"  id="time"></span>
+<span style="padding:30px;"  id="date"></span>
+</h1>
+</p>
+	<script type="text/javascript">
+	
+		var storednames=JSON.parse(localStorage.getItem("names"));
+		var scores=JSON.parse(localStorage.getItem("points"));
+		var times=JSON.parse(localStorage.getItem("time"));
+		var dates=JSON.parse(localStorage.getItem("date"));
+		
+		for(var i=0;i<storednames.length;i++)
+		{
+		document.getElementById("result").innerHTML= storednames[i].toUpperCase();
+		document.getElementById("score").innerHTML= scores[i];
+		document.getElementById("time").innerHTML= times[i];
+		document.getElementById("date").innerHTML= dates[i];
+	}
+
+	
+	
+	</script>
+
+</body>
+</html>
